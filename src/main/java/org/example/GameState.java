@@ -7,19 +7,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GameState {
-    private List<MainCharacter> personajes;  // Lista de personajes jugables
-    private List<Npc> personajesNpc;         // Lista de NPCs
+    private List<MainCharacter> personajes;
+    private List<Npc> personajesNpc;
     private int turnoActual;
-    private int monedas; // Variable para almacenar las monedas
+    private int monedas;
 
     public GameState() {
         this.personajes = new ArrayList<>();
         this.personajesNpc = new ArrayList<>();
         this.turnoActual = 0;
-        this.monedas = 0; // Inicializar las monedas
+        this.monedas = 0;
     }
 
-    // Método para agregar personajes jugables (MainCharacter)
+    // Método para agregar personajes jugables
     public void agregarPersonaje(MainCharacter personaje) {
         personajes.add(personaje);
     }
@@ -29,13 +29,13 @@ public class GameState {
         personajesNpc.add(npc);
     }
 
-    // Método para obtener el personaje actual (jugable)
+    // Método para obtener el personaje actual
     public MainCharacter getPersonajeActual() {
         if (personajes.isEmpty()) {
             System.out.println("No hay personajes en el juego.");
             return null;
         }
-        return personajes.get(0); // Obtener el primer personaje
+        return personajes.get(0);
     }
 
 
@@ -49,11 +49,11 @@ public class GameState {
         System.out.println("Estado actual del juego:");
 
         for (MainCharacter p : personajes) {
-            System.out.println(p);  // Suponiendo que tienes un método toString() en MainCharacter
+            System.out.println(p);
         }
 
         for (Npc npc : personajesNpc) {
-            System.out.println(npc);  // Suponiendo que tienes un método toString() en Npc
+            System.out.println(npc);
         }
     }
 
