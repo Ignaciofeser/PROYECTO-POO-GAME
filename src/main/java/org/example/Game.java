@@ -1,5 +1,14 @@
 package org.example;
+import org.example.Personajes.MainCharacter;
+import org.example.Personajes.NPC.*;
+import org.example.Personajes.Npc;
+import org.example.Personajes.PJ.*;
+
+
 import java.util.Scanner;
+
+import static org.example.Combate.combate;
+
 
 public class Game {
     private Scanner scanner;
