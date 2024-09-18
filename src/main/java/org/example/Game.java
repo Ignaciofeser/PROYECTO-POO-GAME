@@ -4,12 +4,12 @@ import java.util.Scanner;
 public class Game {
     private Scanner scanner;
     private GameState estado;
-    private int monedas; // Monedas ganadas para la tienda
+    private int monedas;
 
     public Game() {
         scanner = new Scanner(System.in);
         estado = new GameState();
-        monedas = 0; // Inicialmente, el jugador no tiene monedas
+        monedas = 0;
     }
 
     public void iniciarJuego() {
