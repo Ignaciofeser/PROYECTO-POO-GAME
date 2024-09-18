@@ -9,13 +9,11 @@ import java.util.Scanner;
 public class GameState {
     private List<MainCharacter> personajes;
     private List<Npc> personajesNpc;
-    private int turnoActual;
     private int monedas;
 
     public GameState() {
         this.personajes = new ArrayList<>();
         this.personajesNpc = new ArrayList<>();
-        this.turnoActual = 0;
         this.monedas = 0;
     }
 
@@ -35,7 +33,7 @@ public class GameState {
             System.out.println("No hay personajes en el juego.");
             return null;
         }
-        return personajes.get(0);
+        return personajes.getFirst();
     }
 
 
