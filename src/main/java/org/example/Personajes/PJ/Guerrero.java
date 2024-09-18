@@ -10,8 +10,13 @@ public class Guerrero extends MainCharacter {
 
     @Override
     public void habilidadEspecial(Personaje objetivo) {
-        int danio = (int) (getFuerza() * 2 * getMultiplicadorHabilidadEspecial());
-        System.out.println(getNombre() + " usa Golpe Devastador, causando " + danio + " de daño a " + objetivo.getNombre());
-        objetivo.recibirDanio(danio);
+        if (getMana() >= getManaHabilidad()) {
+            int danio = (int) (getFuerza() * 2 * getMultiplicadorHabilidadEspecial());
+            System.out.println(getNombre() + " usa Golpe Devastador, causando " + danio + " de daño a " + objetivo.getNombre());
+            objetivo.recibirDanio(danio);
+            setMana(getMana() - getManaHabilidad());
+        } else {
+            System.out.println("No hay suficiente mana para usar Golpe Devastador.");
+        }
     }
 }
