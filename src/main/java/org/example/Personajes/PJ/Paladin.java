@@ -13,7 +13,6 @@ public class Paladin extends MainCharacter {
         int saludRestaurada = (int) (getSaludMax() * 0.3 * getMultiplicadorHabilidadEspecial());
         setSalud(getSalud() + saludRestaurada);
 
-        // Asegúrate de que la salud no exceda el máximo
         if (getSalud() > getSaludMax()) {
             setSalud(getSaludMax());
         }
