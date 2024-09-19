@@ -1,4 +1,5 @@
 package org.example;
+import com.sun.tools.jconsole.JConsoleContext;
 
 import org.example.Personajes.MainCharacter;
 import org.example.Personajes.NPC.*;
@@ -6,6 +7,8 @@ import org.example.Personajes.Npc;
 import org.example.Personajes.PJ.*;
 
 
+import java.awt.*;
+import java.io.Console;
 import java.util.Scanner;
 
 import static org.example.Combate.combate;
@@ -31,10 +34,14 @@ public class Game {
         System.out.println("Te encuentras al borde de una gran aventura. Tu destino aún no está escrito...");
         System.out.println("Antes de que tu viaje comience, debes elegir tu clase:");
 
-        System.out.println("Elige:");
-        System.out.println("1. Guerrero");
-        System.out.println("2. Mago");
-        System.out.println("3. Paladín");
+        System.out.println("------------");
+        System.out.println(ConsoleColors.YELLOW_UNDERLINED + "Elige:" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "1. Guerrero:" + ConsoleColors.RESET);
+        System.out.println("Habilidad especial: Golpe Devastador");
+        System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "2. Mago" + ConsoleColors.RESET);
+        System.out.println("Habilidad especial: Bola de Fuego");
+        System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "3. Paladín" + ConsoleColors.RESET);
+        System.out.println("Habilidad especial: Bendición (Curación)");
         int claseElegida = scanner.nextInt();
 
         MainCharacter jugador = switch (claseElegida) {
@@ -47,16 +54,16 @@ public class Game {
         estado.agregarPersonaje(jugador);
         estado.mostrarEstado();
 
+        System.out.println(ConsoleColors.YELLOW_UNDERLINED + "Elige un camino:" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "1. Bosque Sombrío" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "2. Templo en Ruinas" + ConsoleColors.RESET);
 
-        System.out.println("Elige un camino:");
-        System.out.println("1. Bosque Sombrío");
-        System.out.println("2. Templo en Ruinas");
         int caminoElegido = scanner.nextInt();
 
         switch (caminoElegido) {
             case 1 -> manejarCaminoBosque();
             case 2 -> manejarCaminoRuinas();
-            default -> System.out.println("Elección no válida.");
+            default -> System.out.println(ConsoleColors.RED_BRIGHT + "Elección no válida." + ConsoleColors.RESET);
         }
 
         scanner.close();
@@ -79,9 +86,9 @@ public class Game {
 
             jugador.restaurarSaludYMana();
 
-            System.out.println("Ahora sí, tienes que decidir por donde seguir tu camino\n");
-            System.out.println("1. Profundidaes del bosque");
-            System.out.println("2. Laberinto");
+            System.out.println(ConsoleColors.YELLOW_UNDERLINED + "Ahora sí, tienes que decidir por donde seguir tu camino\n" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "1. Profundidaes del bosque" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT +"2. Laberinto" + ConsoleColors.RESET);
             int segundoCamino = scanner.nextInt();
             if (segundoCamino == 1) manejarCaminoProfundidadesDelBosque();
             else manejarCaminoLaberinto();
@@ -100,6 +107,7 @@ public class Game {
         combate(estado, golem);
 
         MainCharacter jugador = estado.getPersonajeActual();
+      
         if (jugador.getSalud() > 0) {
             estado.ganarMonedas();
             System.out.println("Notas algo brillante luego de que este se desmoronara. Es una especie de anillo.");
@@ -107,15 +115,16 @@ public class Game {
 
             jugador.restaurarSaludYMana();
 
-            System.out.println("Ahora sí, tienes que decidir por donde seguir tu camino\n");
-            System.out.println("1. Portal tenebroso");
-            System.out.println("2. Profundidades de la Cueva");
+           System.out.println(ConsoleColors.YELLOW_UNDERLINED + "Ahora sí, tienes que decidir por donde seguir tu camino\n" + ConsoleColors.RESET);
+           System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "1. Portal tenebroso" + ConsoleColors.RESET);
+           System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "2. Profundidades de la Cueva" + ConsoleColors.RESET);
             int segundoCamino = scanner.nextInt();
             if (segundoCamino == 1) manejarCaminoPortal();
             else manejarCaminoProfundidadesDeLaCueva();
         } else {
             estado.setGameOver(true);
         }
+
     }
 
     private void manejarCaminoProfundidadesDelBosque() {
@@ -220,13 +229,13 @@ public class Game {
         System.out.println("Por lo que decides actuar y comenzar la batalla.\n");
         MainCharacter jugador = estado.getPersonajeActual();
 
-        System.out.println("Te enfrentas a la bestia.!");
+        System.out.println(ConsoleColors.RED_UNDERLINED + "Te enfrentas a la bestia.!" + ConsoleColors.RESET);
         Npc bestia = new BestiaTresCabezas();
         estado.agregarNpc(bestia);
         combate(estado, bestia);
 
         if (jugador.getSalud() > 0) {
-            System.out.println("¡Has derrotado a la bestia y restaurado la paz!");
+            System.out.println(ConsoleColors.GREEN_BACKGROUND + "¡Has derrotado a la bestia y restaurado la paz!" + ConsoleColors.RESET );
         } else {
             estado.setGameOver(true);
         }
@@ -244,10 +253,9 @@ public class Game {
         combate(estado, dragon);
 
         if (jugador.getSalud() > 0) {
-            System.out.println("¡Has derrotado al Dragón oscuro y restaurado la paz!");
+            System.out.println(ConsoleColors.GREEN_BACKGROUND + "¡Has derrotado al Dragón oscuro y restaurado la paz!" + ConsoleColors.RESET);
         } else {
             estado.setGameOver(true);
         }
     }
-
 }
