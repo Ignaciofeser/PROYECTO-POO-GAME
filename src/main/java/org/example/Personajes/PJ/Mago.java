@@ -8,7 +8,7 @@ import java.io.Console;
 
 public class Mago extends MainCharacter {
     public Mago() {
-        super("Mago", 110, 20, 5, 100, 200, 50,1);}
+        super("Mago", 20, 20, 5, 100, 200, 50,1);}
 
     @Override
     public void habilidadEspecial(Personaje objetivo) {

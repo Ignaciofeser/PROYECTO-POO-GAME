@@ -29,7 +29,9 @@ public class Combate {
             if (accion == 1) {
                 if (probabilidad < 75) {
                     int danio = jugador.atacar(enemigo);
+
                     System.out.println("Atacaste a " + enemigo.getNombre() + " y causaste " + ConsoleColors.GREEN_BOLD_BRIGHT + danio + ConsoleColors.RESET + " de daño.");
+                  
                 } else {
                     System.out.println(ConsoleColors.RED_BRIGHT + "Has fallado el ataque." + ConsoleColors.RESET);
                 }
@@ -64,11 +66,21 @@ public class Combate {
                 int danioRecibido = enemigo.atacar(jugador);
                 System.out.println("El enemigo " + ConsoleColors.RED_BOLD + enemigo.getNombre() + ConsoleColors.RESET + " te atacó y causó " + ConsoleColors.RED_BRIGHT + danioRecibido + ConsoleColors.RESET + " de daño.");
             }
+
             if (jugador.getSalud() <= 0) {
+
                 System.out.println(ConsoleColors.RED_BACKGROUND + "Fin del juego." + ConsoleColors.RESET);
+                estado.setGameOver(true);
+
                 break;
             }
+
             jugador.regenerarMana();
         }
+
+
     }
 }
+
+
+

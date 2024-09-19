@@ -10,11 +10,13 @@ public class GameState {
     private List<MainCharacter> personajes;
     private List<Npc> personajesNpc;
     private int monedas;
+    private boolean gameOver = false;
 
     public GameState() {
         this.personajes = new ArrayList<>();
         this.personajesNpc = new ArrayList<>();
         this.monedas = 0;
+        this.gameOver = gameOver;
     }
 
     // Método para agregar personajes jugables
@@ -120,6 +122,12 @@ public class GameState {
             }
         }
     }
+
+
+    public boolean setGameOver(boolean gameOver) {
+        return gameOver;
+    }
+
 
     // Método para remover un NPC
     public void removerNpc(Npc npc) {
