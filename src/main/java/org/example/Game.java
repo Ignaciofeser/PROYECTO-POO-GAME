@@ -36,9 +36,12 @@ public class Game {
 
         System.out.println("------------");
         System.out.println(ConsoleColors.YELLOW_UNDERLINED + "Elige:" + ConsoleColors.RESET);
-        System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "1. Guerrero" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "1. Guerrero:" + ConsoleColors.RESET);
+        System.out.println("Habilidad especial: Golpe Devastador");
         System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "2. Mago" + ConsoleColors.RESET);
+        System.out.println("Habilidad especial: Bola de Fuego");
         System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "3. Paladín" + ConsoleColors.RESET);
+        System.out.println("Habilidad especial: Bendición (Curación)");
         int claseElegida = scanner.nextInt();
 
         MainCharacter jugador = switch (claseElegida) {
