@@ -61,7 +61,6 @@ public abstract class MainCharacter extends Personaje {
 
     public boolean usarHabilidadEspecial(Personaje objetivo) {
         if (this.mana >= this.manaHabilidad) {
-            this.mana -= this.manaHabilidad;
             habilidadEspecial(objetivo);
             return true;
         } else {

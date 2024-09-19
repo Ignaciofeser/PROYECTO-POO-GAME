@@ -10,7 +10,7 @@ public class Golem extends Npc {
 
     @Override
     public void habilidadEspecialNpc(MainCharacter jugador) {
-        System.out.println(getNombre() + " usa Piel de Piedra, aumentando su defensa en un 25%.");
+        System.out.println(getNombre() + " usa Piel de Piedra, aumentando su defensa en un 10%.");
         this.defensa += (int) (this.defensa * 0.10);
     }
 
