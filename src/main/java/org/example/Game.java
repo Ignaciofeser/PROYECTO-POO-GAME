@@ -1,4 +1,5 @@
 package org.example;
+
 import org.example.Personajes.MainCharacter;
 import org.example.Personajes.NPC.*;
 import org.example.Personajes.Npc;
@@ -46,7 +47,7 @@ public class Game {
         estado.agregarPersonaje(jugador);
         estado.mostrarEstado();
 
-        // Elegir un camino
+
         System.out.println("Elige un camino:");
         System.out.println("1. Bosque Sombrío");
         System.out.println("2. Templo en Ruinas");
@@ -66,45 +67,59 @@ public class Game {
         System.out.println("Goblin: Alto ahí humano, no pasarás por aqui. Hace mas de 100 años que cuido este bosque.");
         System.out.println("Goblin: Y ninguno ha podido pasar sobre mi cadaver.");
         System.out.println("Tú: No me asustas rata verde.");
+        MainCharacter jugador = estado.getPersonajeActual();
         Npc goblin = new Goblin();
         estado.agregarNpc(goblin);
         combate(estado, goblin);
-        estado.ganarMonedas();
 
-        System.out.println("Una vez derrotado, notas algo brillante en su bolsillo");
-        System.out.println("¡Una manzana encantada! Esta restaura toda tu vida y mana.");
-        MainCharacter jugador = estado.getPersonajeActual();
-        jugador.restaurarSaludYMana();
-        System.out.println("Ahora sí, tienes que decidir por donde seguir tu camino\n");
-        System.out.println("1. Profundidaes del bosque");
-        System.out.println("2. Laberinto");
-        int segundoCamino = scanner.nextInt();
-        if (segundoCamino == 1) manejarCaminoProfundidadesDelBosque();
-        else manejarCaminoLaberinto();
+        if (jugador.getSalud() > 0) {
+            estado.ganarMonedas();
+            System.out.println("Una vez derrotado, notas algo brillante en su bolsillo");
+            System.out.println("¡Una manzana encantada! Esta restaura toda tu vida y mana.");
+
+            jugador.restaurarSaludYMana();
+
+            System.out.println("Ahora sí, tienes que decidir por donde seguir tu camino\n");
+            System.out.println("1. Profundidaes del bosque");
+            System.out.println("2. Laberinto");
+            int segundoCamino = scanner.nextInt();
+            if (segundoCamino == 1) manejarCaminoProfundidadesDelBosque();
+            else manejarCaminoLaberinto();
+        } else {
+            estado.setGameOver(true);
+        }
+
     }
 
     private void manejarCaminoRuinas() {
+
         System.out.println("Decides explorar el Templo en Ruinas y te de repente escuchas un ruido.!");
         System.out.println("Es un GOLÉM.");
         Npc golem = new Golem();
         estado.agregarNpc(golem);
         combate(estado, golem);
-        estado.ganarMonedas();
 
-        System.out.println("Notas algo brillante luego de que este se desmoronara. Es una especie de anillo.");
-        System.out.println("Decides colocartelo y este provoca que se te restaure toda la vida y el mana.");
         MainCharacter jugador = estado.getPersonajeActual();
-        jugador.restaurarSaludYMana();
+        if (jugador.getSalud() > 0) {
+            estado.ganarMonedas();
+            System.out.println("Notas algo brillante luego de que este se desmoronara. Es una especie de anillo.");
+            System.out.println("Decides colocartelo y este provoca que se te restaure toda la vida y el mana.");
 
-        System.out.println("Ahora sí, tienes que decidir por donde seguir tu camino\n");
-        System.out.println("1. Portal tenebroso");
-        System.out.println("2. Profundidades de la Cueva");
-        int segundoCamino = scanner.nextInt();
-        if (segundoCamino == 1) manejarCaminoPortal();
-        else manejarCaminoProfundidadesDeLaCueva();
+            jugador.restaurarSaludYMana();
+
+            System.out.println("Ahora sí, tienes que decidir por donde seguir tu camino\n");
+            System.out.println("1. Portal tenebroso");
+            System.out.println("2. Profundidades de la Cueva");
+            int segundoCamino = scanner.nextInt();
+            if (segundoCamino == 1) manejarCaminoPortal();
+            else manejarCaminoProfundidadesDeLaCueva();
+        } else {
+            estado.setGameOver(true);
+        }
     }
 
     private void manejarCaminoProfundidadesDelBosque() {
+
         System.out.println("Te adentras en las profundidades del bosque y luego de caminar un rato... .");
         System.out.println("Encuentras una cabaña un tanto sospechosa. Decides entrar.");
         System.out.println("Al abrir la puerta un Hechicero te sorprende.");
@@ -113,12 +128,18 @@ public class Game {
         Npc magoOscuro = new MagoOscuro();
         estado.agregarNpc(magoOscuro);
         combate(estado, magoOscuro);
-        estado.ganarMonedas();
 
-        System.out.println("Lo has derrotado, pero ¡oh! parece que previo a eso te lanza una poción.");
-        System.out.println(" (Splash), ¡APARECES EN OTRO LUGAR!");
-        estado.visitarTienda();
-        manejarCaminoDragon();
+        MainCharacter jugador = estado.getPersonajeActual();
+        if (jugador.getSalud() > 0) {
+            estado.ganarMonedas();
+            System.out.println("Lo has derrotado, pero ¡oh! parece que previo a eso te lanza una poción.");
+            System.out.println(" (Splash), ¡APARECES EN OTRO LUGAR!");
+            estado.visitarTienda();
+            manejarCaminoDragon();
+        } else {
+            estado.setGameOver(true);
+        }
+
     }
 
     private void manejarCaminoLaberinto() {
@@ -132,12 +153,16 @@ public class Game {
         Npc druida = new Druida();
         estado.agregarNpc(druida);
         combate(estado, druida);
-        estado.ganarMonedas();
-
-        System.out.println("Las plantas y árboles comienzan a desvanecerse y decides alejarte de ahi.");
-        System.out.println("Te alejas tanto que te encuentras una casa rodante. Decides entrar.");
-        estado.visitarTienda();
-        manejarCaminoBestia();
+        MainCharacter jugador = estado.getPersonajeActual();
+        if (jugador.getSalud() > 0) {
+            estado.ganarMonedas();
+            System.out.println("Las plantas y árboles comienzan a desvanecerse y decides alejarte de ahi.");
+            System.out.println("Te alejas tanto que te encuentras una casa rodante. Decides entrar.");
+            estado.visitarTienda();
+            manejarCaminoBestia();
+        } else {
+        estado.setGameOver(true);
+    }
     }
 
     private void manejarCaminoPortal() {
@@ -149,14 +174,21 @@ public class Game {
         Npc anacondaGigante = new AnacondaGigante();
         estado.agregarNpc(anacondaGigante);
         combate(estado, anacondaGigante);
-        estado.ganarMonedas();
 
+        MainCharacter jugador = estado.getPersonajeActual();
+        if (jugador.getSalud() > 0) {
+            estado.ganarMonedas();
         System.out.println("Tú: Nunca habia tenido tanto miedo. Pero bueno no toca de otra que seguir.");
         System.out.println("Decides irte por el portal que habias encontrado.");
         System.out.println("(Se teletransporta)");
         estado.visitarTienda();
         manejarCaminoDragon();
+        } else {
+            estado.setGameOver(true);
+
+        }
     }
+
 
     private void manejarCaminoProfundidadesDeLaCueva() {
         System.out.println("Te adentras en las profundidades de la cueva y comienzas a escuchar un ¡zumbido!");
@@ -165,14 +197,20 @@ public class Game {
         Npc espectro = new Espectro();
         estado.agregarNpc(espectro);
         combate(estado, espectro);
-        estado.ganarMonedas();
 
-        System.out.println("Tú: No entiendo como he podido acabar con él. Pero hay que seguir investigando.");
-        System.out.println("Decides continuar tu camino y ves un rastro de luz. Al salir de la cueva te encuentras con una casa rodante.");
-        System.out.println("Entras a investigar.");
-        estado.visitarTienda();
-        manejarCaminoBestia();
+        MainCharacter jugador = estado.getPersonajeActual();
+        if (jugador.getSalud() > 0) {
+            estado.ganarMonedas();
+            System.out.println("Tú: No entiendo como he podido acabar con él. Pero hay que seguir investigando.");
+            System.out.println("Decides continuar tu camino y ves un rastro de luz. Al salir de la cueva te encuentras con una casa rodante.");
+            System.out.println("Entras a investigar.");
+            estado.visitarTienda();
+            manejarCaminoBestia();
+        } else {
+            estado.setGameOver(true);
+        }
     }
+
 
     private void manejarCaminoBestia() {
         System.out.println("Una vez afura, sigues con tu camino. Y comienzas a seguir un rastro de sangre.");
@@ -190,7 +228,7 @@ public class Game {
         if (jugador.getSalud() > 0) {
             System.out.println("¡Has derrotado a la bestia y restaurado la paz!");
         } else {
-            System.out.println("Has caído en combate. Fin del juego.");
+            estado.setGameOver(true);
         }
     }
 
@@ -208,7 +246,7 @@ public class Game {
         if (jugador.getSalud() > 0) {
             System.out.println("¡Has derrotado al Dragón oscuro y restaurado la paz!");
         } else {
-            System.out.println("Has caído.");
+            estado.setGameOver(true);
         }
     }
 
