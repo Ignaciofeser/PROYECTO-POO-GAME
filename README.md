@@ -26,3 +26,10 @@ Paradigma: Programación Orientada a Objetos (POO)
 Contribuciones 
 
 Este es un proyecto en desarrollo. Si deseas contribuir, puedes enviar pull requests o abrir issues para sugerencias y mejoras.
+
+**Equipo de desarrollo:**
+
+Andrisani, Facundo
+Feser, Ignacio
+Lauria, Francisco
+Viccei, Tomas
