@@ -30,6 +30,9 @@ Este es un proyecto en desarrollo. Si deseas contribuir, puedes enviar pull requ
 **Equipo de desarrollo:**
 
 Andrisani, Facundo
+
 Feser, Ignacio
+
 Lauria, Francisco
+
 Viccei, Tomas
