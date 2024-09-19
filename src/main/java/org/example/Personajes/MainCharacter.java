@@ -1,4 +1,5 @@
 package org.example.Personajes;
+import org.example.ConsoleColors;
 import org.example.Personaje;
 import org.example.Personajes.PJ.Guerrero;
 
@@ -19,7 +20,7 @@ public abstract class MainCharacter extends Personaje {
 
     public void mejorarHabilidadEspecial() {
         this.multiplicadorHabilidadEspecial *= 2; // Duplica la eficacia de la habilidad especial
-        System.out.println("Habilidad especial mejorada. Nuevo multiplicador: " + this.multiplicadorHabilidadEspecial);
+        System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT + "Habilidad especial mejorada. Nuevo multiplicador: " + this.multiplicadorHabilidadEspecial + ConsoleColors.RESET);
     }
 
     public double getMultiplicadorHabilidadEspecial() {
@@ -37,18 +38,18 @@ public abstract class MainCharacter extends Personaje {
 
     public void restaurarSalud() {
         this.setSalud(this.getSaludMax());
-        System.out.println("Salud restaurada completamente.");
+        System.out.println(ConsoleColors.PURPLE_BOLD + "Salud restaurada completamente." + ConsoleColors.RESET);
     }
 
     public void restaurarMana() {
         this.mana = this.manaMax;
-        System.out.println("Mana restaurado completamente.");
+        System.out.println(ConsoleColors.BLUE_BOLD + "Mana restaurado completamente." + ConsoleColors.RESET);
     }
 
     public void restaurarSaludYMana() {
         this.setSalud(this.getSaludMax());
         this.mana = this.manaMax;
-        System.out.println("Tu salud y mana han sido restauradas completamente");
+        System.out.println(ConsoleColors.GREEN_BOLD + "Tu salud y mana han sido restauradas completamente" + ConsoleColors.RESET);
 
     }
 
@@ -63,7 +64,7 @@ public abstract class MainCharacter extends Personaje {
             habilidadEspecial(objetivo);
             return true;
         } else {
-            System.out.println("No tienes suficiente mana para usar la habilidad especial.");
+            System.out.println(ConsoleColors.RED_BRIGHT + "No tienes suficiente mana para usar la habilidad especial." + ConsoleColors.RESET);
             return false;
         }
     }
