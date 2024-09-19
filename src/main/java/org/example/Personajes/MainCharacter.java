@@ -77,7 +77,7 @@ public abstract class MainCharacter extends Personaje {
 
     @Override
     public String toString() {
-        return String.format("Personaje: %s\nSalud: %d\nFuerza: %d\nDefensa: %d\nMana: %d\nHabilidad: %d",
+        return String.format("Personaje: %s\nSalud: %d\nFuerza: %d\nDefensa: %d\nMana: %d\nManaxHabilidad: %d",
                 getNombre(), getSalud(), getFuerza(), getDefensa(), mana, manaHabilidad);
     }
 }
