@@ -32,7 +32,7 @@ public class GameState {
     // Método para obtener el personaje actual
     public MainCharacter getPersonajeActual() {
         if (personajes.isEmpty()) {
-            System.out.println("No hay personajes en el juego.");
+            System.out.println(ConsoleColors.RED_BRIGHT + "No hay personajes en el juego." + ConsoleColors.RESET);
             return null;
         }
         return personajes.get(0);
@@ -42,18 +42,21 @@ public class GameState {
     // Método para mostrar el estado actual de todos los personajes y NPCs
     public void mostrarEstado() {
         if (personajes.isEmpty() && personajesNpc.isEmpty()) {
-            System.out.println("No hay personajes ni NPCs en el juego.");
+            System.out.println(ConsoleColors.RED_BRIGHT + "No hay personajes ni NPCs en el juego." + ConsoleColors.RESET);
             return;
         }
 
         System.out.println("Estado actual del juego:");
+        System.out.println("------------");
 
         for (MainCharacter p : personajes) {
-            System.out.println(p);
+            System.out.println(ConsoleColors.GREEN_BOLD + p + ConsoleColors.RESET);
+            System.out.println("------------");
         }
 
         for (Npc npc : personajesNpc) {
-            System.out.println(npc);
+            System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT + npc + ConsoleColors.RESET);
+            System.out.println("------------");
         }
     }
 
@@ -71,11 +74,11 @@ public class GameState {
         boolean salir = false;
 
         while (!salir) {
-            System.out.println("¡Has encontrado una tienda misteriosa! Puedes comprar lo siguiente:");
-            System.out.println("1. Pociones de vida (50 monedas)");
-            System.out.println("2. Pociones de mana (50 monedas)");
-            System.out.println("3. Mejorar habilidad especial (100 monedas)");
-            System.out.println("4. Salir de la tienda");
+            System.out.println(ConsoleColors.BLUE_BACKGROUND + "¡Has encontrado una tienda misteriosa! Puedes comprar lo siguiente:" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "1. Pociones de vida (50 monedas)" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "2. Pociones de mana (50 monedas)" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "3. Mejorar habilidad especial (100 monedas)" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "4. Salir de la tienda" + ConsoleColors.RESET);
 
             int eleccion = scanner.nextInt();
 
@@ -84,38 +87,38 @@ public class GameState {
                     if (monedas >= 50) {
                         monedas -= 50;
                         getPersonajeActual().restaurarSalud();
-                        System.out.println("Has comprado una poción de vida.");
+                        System.out.println(ConsoleColors.PURPLE_BOLD + "Has comprado una poción de vida." + ConsoleColors.RESET );
                     } else {
-                        System.out.println("No tienes suficientes monedas.");
+                        System.out.println(ConsoleColors.RED_BOLD + "No tienes suficientes monedas." + ConsoleColors.RESET );
                     }
                 }
                 case 2 -> {
                     if (monedas >= 50) {
                         monedas -= 50;
                         getPersonajeActual().restaurarMana();
-                        System.out.println("Has comprado una poción de mana.");
+                        System.out.println(ConsoleColors.PURPLE_BOLD + "Has comprado una poción de mana." + ConsoleColors.RESET );
                     } else {
-                        System.out.println("No tienes suficientes monedas.");
+                        System.out.println(ConsoleColors.RED_BOLD + "No tienes suficientes monedas." + ConsoleColors.RESET );
                     }
                 }
                 case 3 -> {
                     if (monedas >= 100) {
                         monedas -= 100;
                         getPersonajeActual().mejorarHabilidadEspecial();
-                        System.out.println("Has mejorado tu habilidad especial.");
+                        System.out.println(ConsoleColors.PURPLE_BOLD + "Has mejorado tu habilidad especial." + ConsoleColors.RESET );
                     } else {
-                        System.out.println("No tienes suficientes monedas.");
+                        System.out.println(ConsoleColors.RED_BOLD + "No tienes suficientes monedas." + ConsoleColors.RESET );
                     }
                 }
                 case 4 -> {
-                    System.out.println("Has salido de la tienda.");
+                    System.out.println(ConsoleColors.PURPLE_BOLD + "Has salido de la tienda." + ConsoleColors.RESET );
                     salir = true;
                 }
-                default -> System.out.println("Elección no válida.");
+                default -> System.out.println(ConsoleColors.RED_BOLD + "Elección no válida." + ConsoleColors.RESET );
             }
 
             if (!salir) {
-                System.out.println("Te quedan " + monedas + " monedas.");
+                System.out.println(ConsoleColors.BLUE_BOLD + "Te quedan " + monedas + " monedas." + ConsoleColors.RESET );
             }
         }
     }
