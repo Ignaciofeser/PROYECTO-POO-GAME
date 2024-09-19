@@ -1,5 +1,6 @@
 package org.example.Personajes.PJ;
 
+import org.example.ConsoleColors;
 import org.example.Personaje;
 import org.example.Personajes.MainCharacter;
 
@@ -12,7 +13,7 @@ public class Guerrero extends MainCharacter {
     public void habilidadEspecial(Personaje objetivo) {
         if (getMana() >= getManaHabilidad()) {
             int danio = (int) (getFuerza() * 2 * getMultiplicadorHabilidadEspecial());
-            System.out.println(getNombre() + " usa Golpe Devastador, causando " + danio + " de daño a " + objetivo.getNombre());
+            System.out.println(ConsoleColors.GREEN_BOLD + getNombre() + ConsoleColors.RESET + " usa Golpe Devastador, causando " + ConsoleColors.GREEN_BOLD_BRIGHT + danio + ConsoleColors.RESET + " de daño a " + objetivo.getNombre());
             objetivo.recibirDanio(danio);
             setMana(getMana() - getManaHabilidad());
         } else {
