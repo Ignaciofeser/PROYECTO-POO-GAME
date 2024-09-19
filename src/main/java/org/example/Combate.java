@@ -12,7 +12,9 @@ public class Combate {
         Scanner scanner = new Scanner(System.in);
         MainCharacter jugador = estado.getPersonajeActual();
         Random random = new Random();
+        System.out.println();
         System.out.println(ConsoleColors.YELLOW_BACKGROUND + "¡Prepárate para pelear!" + ConsoleColors.RESET);
+        System.out.println();
 
         while (jugador.getSalud() > 0 && enemigo.getSalud() > 0) {
             estado.mostrarEstado();
@@ -44,24 +46,26 @@ public class Combate {
             }
 
             if (enemigo.getSalud() <= 0) {
+                System.out.println();
                 System.out.println(ConsoleColors.WHITE_BACKGROUND + "Has derrotado a " + enemigo.getNombre() + "!" + ConsoleColors.RESET);
+                System.out.println();
                 estado.removerNpc(enemigo);
                 break;
             }
 
-            System.out.println("Es el turno del enemigo.");
+            System.out.println(ConsoleColors.CYAN_BOLD + "Es el turno del enemigo." + ConsoleColors.RESET);
 
             probabilidad = random.nextInt(100);
 
             if (probabilidad < 20) {
                 enemigo.habilidadEspecialNpc(jugador);
-                System.out.println("El enemigo " + enemigo.getNombre() + " usó su habilidad especial.");
+                System.out.println("El enemigo " + ConsoleColors.RED_BOLD + enemigo.getNombre() + ConsoleColors.RESET + " usó su habilidad especial.");
             } else {
                 int danioRecibido = enemigo.atacar(jugador);
-                System.out.println("El enemigo " + enemigo.getNombre() + " te atacó y causó " + ConsoleColors.RED_BRIGHT + danioRecibido + ConsoleColors.RESET + " de daño.");
+                System.out.println("El enemigo " + ConsoleColors.RED_BOLD + enemigo.getNombre() + ConsoleColors.RESET + " te atacó y causó " + ConsoleColors.RED_BRIGHT + danioRecibido + ConsoleColors.RESET + " de daño.");
             }
             if (jugador.getSalud() <= 0) {
-                System.out.println(ConsoleColors.RED_BACKGROUND_BRIGHT + "Fin del juego." + ConsoleColors.RESET);
+                System.out.println(ConsoleColors.RED_BACKGROUND + "Fin del juego." + ConsoleColors.RESET);
                 break;
             }
             jugador.regenerarMana();

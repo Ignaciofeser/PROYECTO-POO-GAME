@@ -1,5 +1,6 @@
 package org.example.Personajes.PJ;
 
+import org.example.ConsoleColors;
 import org.example.Personaje;
 import org.example.Personajes.MainCharacter;
 
@@ -18,6 +19,6 @@ public class Paladin extends MainCharacter {
             setSalud(getSaludMax());
         }
 
-        System.out.println(getNombre() + " invoca una bendición y se cura " + saludRestaurada + " puntos de salud.");
+        System.out.println(ConsoleColors.GREEN_BOLD + getNombre() + ConsoleColors.RESET + " invoca una bendición y se cura " + ConsoleColors.GREEN_BOLD_BRIGHT + saludRestaurada + ConsoleColors.RESET + " puntos de salud.");
     }
 }

@@ -65,7 +65,7 @@ public class GameState {
     public void ganarMonedas() {
         int recompensa = (int) (Math.random() * 50 + 25);
         monedas += recompensa;
-        System.out.println("Has ganado " + recompensa + " monedas. Total: " + monedas + " monedas.");
+        System.out.println("Has ganado " + ConsoleColors.BLUE_BOLD + recompensa + ConsoleColors.RESET + " monedas. Total: " + ConsoleColors.BLUE_BOLD + monedas + ConsoleColors.RESET + " monedas.");
     }
 
     // Método para visitar la tienda
@@ -118,7 +118,7 @@ public class GameState {
             }
 
             if (!salir) {
-                System.out.println(ConsoleColors.BLUE_BOLD + "Te quedan " + monedas + " monedas." + ConsoleColors.RESET );
+                System.out.println("Te quedan " + ConsoleColors.BLUE_BOLD + monedas + ConsoleColors.RESET + " monedas.");
             }
         }
     }

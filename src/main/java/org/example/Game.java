@@ -194,9 +194,9 @@ public class Game {
         combate(estado, bestia);
 
         if (jugador.getSalud() > 0) {
-            System.out.println(ConsoleColors.GREEN_BACKGROUND_BRIGHT + "¡Has derrotado a la bestia y restaurado la paz!" + ConsoleColors.RESET );
+            System.out.println(ConsoleColors.GREEN_BACKGROUND + "¡Has derrotado a la bestia y restaurado la paz!" + ConsoleColors.RESET );
         } else {
-            System.out.println(ConsoleColors.RED_BACKGROUND_BRIGHT + "Has caído en combate. Fin del juego." + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED_BACKGROUND + "Has caído en combate. Fin del juego." + ConsoleColors.RESET);
         }
     }
 
@@ -212,9 +212,9 @@ public class Game {
         combate(estado, dragon);
 
         if (jugador.getSalud() > 0) {
-            System.out.println(ConsoleColors.GREEN_BACKGROUND_BRIGHT + "¡Has derrotado al Dragón oscuro y restaurado la paz!" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.GREEN_BACKGROUND + "¡Has derrotado al Dragón oscuro y restaurado la paz!" + ConsoleColors.RESET);
         } else {
-            System.out.println(ConsoleColors.RED_BACKGROUND_BRIGHT + "Has caído." + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED_BACKGROUND + "Has caído." + ConsoleColors.RESET);
         }
     }
 
