@@ -2,9 +2,7 @@ package org.example;
 
 import org.example.Personajes.MainCharacter;
 import org.example.Personajes.Npc;
-import org.example.Levenshtein;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
  // Ajusta la ruta según sea necesario
