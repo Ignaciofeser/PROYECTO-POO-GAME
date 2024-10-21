@@ -4,8 +4,12 @@ import org.example.Personajes.MainCharacter;
 import org.example.Personajes.Npc;
 import java.util.Random;
 import java.util.Scanner;
+import org.example.Levenshtein; // Ajusta la ruta según sea necesario
+
 
 public class Combate {
+    private static final String ACCION_ATACAR = "atacar";
+    private static final String ACCION_HABILIDAD_ESPECIAL = "usar habilidad especial";
 
     public static void combate(GameState estado, Npc enemigo) {
         Scanner scanner = new Scanner(System.in);
@@ -17,24 +21,34 @@ public class Combate {
             estado.mostrarEstado();
 
             System.out.println("Es tu turno. Escribe una acción (por ejemplo, 'atacar al goblin' o 'usar habilidad especial'):");
-
             String accion = scanner.nextLine().toLowerCase();
+            boolean accionValida = false;
 
-            if (accion.contains("atacar")) {
-                int probabilidad = random.nextInt(100);
-                if (probabilidad < 75) {
-                    int danio = jugador.atacar(enemigo);
-                    System.out.println("Atacaste a " + enemigo.getNombre() + " y causaste " + danio + " de daño.");
-                } else {
-                    System.out.println("Has fallado el ataque.");
-                }
-            } else if (accion.contains("habilidad especial")) {
-                int probabilidad = random.nextInt(100);
-                if (probabilidad < 90) {
-                    if (jugador.usarHabilidadEspecial(enemigo)) {
-                        System.out.println("Usaste una habilidad especial en " + enemigo.getNombre() + ".");
+            // Comprobar si la acción es válida
+            if (Levenshtein.calcular(accion, ACCION_ATACAR) <= 3) {
+                accionValida = true; // Es similar a "atacar"
+            } else if (Levenshtein.calcular(accion, ACCION_HABILIDAD_ESPECIAL) <= 3) {
+                accionValida = true; // Es similar a "usar habilidad especial"
+            }
+
+            if (accionValida) {
+                // Procesar la acción válida
+                if (Levenshtein.calcular(accion, ACCION_ATACAR) <= 3) {
+                    int probabilidad = random.nextInt(100);
+                    if (probabilidad < 75) {
+                        int danio = jugador.atacar(enemigo);
+                        System.out.println("Atacaste a " + enemigo.getNombre() + " y causaste " + danio + " de daño.");
                     } else {
-                        System.out.println("Fallaste al usar tu habilidad especial.");
+                        System.out.println("Has fallado el ataque.");
+                    }
+                } else if (Levenshtein.calcular(accion, ACCION_HABILIDAD_ESPECIAL) <= 3) {
+                    int probabilidad = random.nextInt(100);
+                    if (probabilidad < 90) {
+                        if (jugador.usarHabilidadEspecial(enemigo)) {
+                            System.out.println("Usaste una habilidad especial en " + enemigo.getNombre() + ".");
+                        } else {
+                            System.out.println("Fallaste al usar tu habilidad especial.");
+                        }
                     }
                 }
             } else {
