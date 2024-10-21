@@ -11,9 +11,6 @@ import java.util.Scanner;
 
 
 public class Combate {
-    private static final String ACCION_ATACAR = "atacar";
-    private static final String ACCION_HABILIDAD_ESPECIAL = "usar habilidad especial";
-
     public static void combate(GameState estado, Npc enemigo) {
         Scanner scanner = new Scanner(System.in);
         MainCharacter jugador = estado.getPersonajeActual();
