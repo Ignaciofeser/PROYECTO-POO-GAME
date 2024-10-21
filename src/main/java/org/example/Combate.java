@@ -18,7 +18,7 @@ public class Combate {
 
             System.out.println("Es tu turno. Escribe una acción (por ejemplo, 'atacar al goblin' o 'usar habilidad especial'):");
 
-            String accion = scanner.nextLine().toLowerCase();  // Convertimos todo a minúsculas para facilitar el análisis
+            String accion = scanner.nextLine().toLowerCase();
 
             if (accion.contains("atacar")) {
                 int probabilidad = random.nextInt(100);
