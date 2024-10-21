@@ -2,9 +2,12 @@ package org.example;
 
 import org.example.Personajes.MainCharacter;
 import org.example.Personajes.Npc;
+import org.example.Levenshtein;
+
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
-import org.example.Levenshtein; // Ajusta la ruta según sea necesario
+ // Ajusta la ruta según sea necesario
 
 
 public class Combate {
@@ -24,16 +27,36 @@ public class Combate {
             String accion = scanner.nextLine().toLowerCase();
             boolean accionValida = false;
 
-            // Comprobar si la acción es válida
-            if (Levenshtein.calcular(accion, ACCION_ATACAR) <= 3) {
-                accionValida = true; // Es similar a "atacar"
-            } else if (Levenshtein.calcular(accion, ACCION_HABILIDAD_ESPECIAL) <= 3) {
-                accionValida = true; // Es similar a "usar habilidad especial"
+            // Dividir la acción en palabras
+            String[] palabrasAccion = accion.split(" ");
+
+            // Comprobar si alguna palabra es un sinónimo válido para "atacar"
+            for (String palabra : palabrasAccion) {
+                for (String sinonimo : ListaSinonimos.ACCION_ATACAR) {
+                    if (Levenshtein.calcular(palabra, sinonimo) <= 3) {
+                        accionValida = true;
+                        break; // Salir del bucle si se encuentra un sinónimo
+                    }
+                }
+                if (accionValida) break; // Salir del bucle externo si ya se encontró un sinónimo
+            }
+
+            // Comprobar si alguna palabra es un sinónimo válido para "habilidad especial"
+            if (!accionValida) {
+                for (String palabra : palabrasAccion) {
+                    for (String sinonimo : ListaSinonimos.ACCION_HABILIDAD_ESPECIAL) {
+                        if (Levenshtein.calcular(palabra, sinonimo) <= 3) {
+                            accionValida = true;
+                            break; // Salir del bucle si se encuentra un sinónimo
+                        }
+                    }
+                    if (accionValida) break; // Salir del bucle externo si se encuentra un sinónimo
+                }
             }
 
             if (accionValida) {
                 // Procesar la acción válida
-                if (Levenshtein.calcular(accion, ACCION_ATACAR) <= 3) {
+                if (ListaSinonimos.ACCION_ATACAR.stream().anyMatch(sinonimo -> Levenshtein.calcular(accion, sinonimo) <= 3)) {
                     int probabilidad = random.nextInt(100);
                     if (probabilidad < 75) {
                         int danio = jugador.atacar(enemigo);
@@ -41,7 +64,7 @@ public class Combate {
                     } else {
                         System.out.println("Has fallado el ataque.");
                     }
-                } else if (Levenshtein.calcular(accion, ACCION_HABILIDAD_ESPECIAL) <= 3) {
+                } else if (ListaSinonimos.ACCION_HABILIDAD_ESPECIAL.stream().anyMatch(sinonimo -> Levenshtein.calcular(accion, sinonimo) <= 3)) {
                     int probabilidad = random.nextInt(100);
                     if (probabilidad < 90) {
                         if (jugador.usarHabilidadEspecial(enemigo)) {
