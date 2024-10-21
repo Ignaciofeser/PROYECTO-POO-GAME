@@ -2,7 +2,7 @@ package org.example;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class InterpreteComado {
+public class InterpreteComando {
     // Patrones RegEx para detectar acciones y enemigos/objetivos
     private static final Pattern ATACAR_PATRON = Pattern.compile("atacar\\s+a?l?\\s*(\\w+)", Pattern.CASE_INSENSITIVE);
     private static final Pattern MOVERSE_PATRON = Pattern.compile("moverse\\s+a\\s*(\\w+)", Pattern.CASE_INSENSITIVE);

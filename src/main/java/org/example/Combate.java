@@ -2,9 +2,6 @@ package org.example;
 import java.util.Scanner;
 import org.example.Personajes.MainCharacter;
 import org.example.Personajes.Npc;
-import java.util.Random;
-import java.util.Scanner;
-import org.example.InterpreteComado;
 public class Combate {
 
     // Lógica de combate
