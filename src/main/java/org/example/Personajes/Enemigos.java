@@ -11,14 +11,14 @@ public enum Enemigos {
     MAGOOSCURO("Mago Oscuro", 80, 25, 5);
 
     private String nombre;
-    private int salud;
+    private int saludMax;
     private int fuerza;
     private int defensa;
 
-    Enemigos(String nombre, int defensa, int salud, int fuerza) {
+    Enemigos(String nombre, int saludMax, int fuerza, int defensa) {
         this.nombre = nombre;
-        this.defensa = defensa;
-        this.salud = salud;
+        this.saludMax = saludMax;
         this.fuerza = fuerza;
+        this.defensa = defensa;
     }
 }
